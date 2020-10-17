@@ -13,7 +13,7 @@ To do this, create another key/value pair in the `word` object at the same time 
 }
 ```
 
-The `revealed` value should an array that contains an empty string for each letter in the word. Later, we will replace these empty strings with letters as the user makes correct guesses.
+The `revealed` value should be an array that contains an empty string for each letter in the word. Later, we will replace these empty strings with letters as the user makes correct guesses.
 
 Once you have done this, pass the `<TheWord>` the word and render either a line or the letter in each position in `revealed`.
 

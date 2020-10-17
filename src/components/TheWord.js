@@ -1,7 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components"; 
 
-const TheWord = ({}) => <Wrapper>____ ____ ____ ____ </Wrapper>;
+
+const TheWord = ({word}) =>  (
+ <Wrapper>
+{word.revealed.map((ltr, idx) => (
+  <Span key={idx} line={!ltr.length}>
+    {ltr.length ? ltr : ""}
+  </Span>
+))}
+</Wrapper> 
+)
 
 const Wrapper = styled.p`
   font-size: 20px;

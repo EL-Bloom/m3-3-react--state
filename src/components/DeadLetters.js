@@ -3,14 +3,18 @@ import styled from "styled-components";
 
 import { colors } from "./GlobalStyles";
 
-const DeadLetters = ({}) => {
+const DeadLetters = ({wrongGuesses}) => {
   return (
     <Wrapper>
       <h2>Dead Letters</h2>
-      <List></List>
-    </Wrapper>
-  );
-};
+      <List>{wrongGuesses.map((ltr, idx) => ( 
+        <Letter key={`wrongGuesses.${idx}`}>{ltr}</Letter> 
+      ))} 
+</List>
+      </Wrapper>
+   
+      )};
+
 
 const Wrapper = styled.div`
   background: ${colors.red};

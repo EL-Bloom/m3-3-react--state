@@ -6,7 +6,7 @@ Create a new state for `usedLetters`. Its initial state should be an empty array
 
 Pass that to the `Keyboard` component. You will need that array to set individual keys to `disabled` in the UI.
 
-In the following screenshopt, I edited the initial array to indicate the both `t` and `v` were used.
+In the following screenshot, I edited the initial array to indicate the both `t` and `v` were used.
 
 ```js
 const [usedLetters, setUsedLetters] = useState(["v", "t"]);

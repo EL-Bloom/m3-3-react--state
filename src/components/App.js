@@ -16,18 +16,31 @@ const initialGameState = { started: false, over: false, win: false };
 
 const App = () => {
   const [game, setGame] = useState(initialGameState);
-  const [word, setWord] = useState({ str: "" });
-  const [gameStart, toggle] = useState(true);
+  const [word, setWord] = useState({ str: "", revealed: []});
+  const [gameStart, toggle] = useState(true); 
+  const [wrongGuesses, setWrongGuesses] = useState([]); 
+  const [usedLetters, setUsedLetters] = useState([]);
 
-  const GetNewWord = (word, id) => {
-    let newWord = words[Math.floor(Math.random() * words.length)];
-    setWord(newWord);
+  const GetNewWord = () => {
+    const newWord = words[Math.floor(Math.random() * words.length)];
+    setWord({
+      str: newWord,
+      revealed: newWord.split("").map(() => ""),
+    });
   };
+
+
+  const handleGuess = (ltr) => { 
+    
+  }
+
+
 
   const handleStart = () => {
     setGame({ ...game, started: !game.started });
     if (word.str === "") {
-      GetNewWord(word);
+      GetNewWord(); 
+    
     }
     toggle(!gameStart);
   };
@@ -47,9 +60,9 @@ const App = () => {
           <Container>
             <Deadman />
             <RightColumn>
-              <DeadLetters />
-              <TheWord />
-            </RightColumn>
+              <DeadLetters wrongGuesses={wrongGuesses}/>
+               <TheWord word={word}/>
+            </RightColumn > 
           </Container>
           <Keyboard />
         </>
