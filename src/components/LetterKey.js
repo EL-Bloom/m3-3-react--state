@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import Letters from "../data/letters.json";
+import LetterKeys from "../data/letters.json";
 import { colors } from "./GlobalStyles";
 
-const LetterKey = ({letter,handleGuess, isDisabled}) => { 
-  let LetterMap = Letters.map ((letter) => ( 
-  <Wrapper onClick={() => handleGuess(letter)} disabled={isDisabled}> 
-    {letter}
-  </Wrapper>)); 
-  return LetterMap;
+const LetterKey = ({}) => { 
+  let LetterMap = LetterKeys.map ((letter) => ( 
+
+ <Wrapper> 
+{letter}
+
+  </Wrapper>  
+  )) 
+  return LetterMap
 };
 
 const Wrapper = styled.button`
