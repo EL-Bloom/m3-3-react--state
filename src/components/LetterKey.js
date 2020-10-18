@@ -4,20 +4,19 @@ import { colors } from "./GlobalStyles";
 import App from "./App";
 
 const LetterKey = ({ letters, usedLetters }) => {
-  const used = usedLetters;
+  
+  console.log(usedLetters)
 
   return letters.map((letter) => (
     <Wrapper
-      onClick={onKeyboardLetterButtonClick}
-      disabled={used.includes(letter) ? true : false}
+      onClick={ () => { 
+        usedLetters.push(letter)
+      }}
+      disabled={usedLetters.includes(letter)}
     >
       {letter}
     </Wrapper>
   ));
-};
-
-const onKeyboardLetterButtonClick = () => {
-  alert("have fun!");
 };
 
 const Wrapper = styled.button`

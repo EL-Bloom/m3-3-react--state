@@ -19,31 +19,37 @@ const App = () => {
   const [game, setGame] = useState(initialGameState);
   const [word, setWord] = useState({ str: "" });
   const [gameStart, toggle] = useState(true);
-  const [wrongGuesses, setWrongGuesses] = useState(['a', 'b']);
-  const [usedLetters, setUsedLetters] = useState(["x", "y"]);
-
-  const GetNewWord = () => {
-    let newWord = words[Math.floor(Math.random() * words.length)]; 
-    let revealed = []; 
-    for(let i=0; i < newWord.length; i++) { 
-      revealed.push("");
-    }
-    setWord(() => {
-      console.log(revealed);
-       return{...word,str: newWord, revealed:revealed};
-      
-    }); 
-   
-  };
-
-
+  const [wrongGuesses, setWrongGuesses] = useState(["a", "b"]);
+  const [usedLetters, setUsedLetters] = useState([ "x", "y", "z"]);
+ 
   const handleStart = () => {
     setGame({ ...game, started: !game.started });
     if (word.str === "") {
       GetNewWord();
     }
     toggle(!gameStart);
+  }; 
+
+  const GetNewWord = () => {
+    let newWord = words[Math.floor(Math.random() * words.length)];
+    let revealed = [];
+    for (let i = 0; i < newWord.length; i++) {
+      revealed.push("");
+    }
+    setWord(() => {
+      console.log(revealed);
+      return { ...word, str: newWord, revealed: revealed };
+    }); 
+    
   };
+ 
+const handleGuess = () => {  
+
+  setUsedLetters (usedLetters.push(word.revealed))
+}
+    
+  
+
 
   return (
     <Wrapper>
@@ -64,7 +70,7 @@ const App = () => {
               <TheWord word={word} />
             </RightColumn>
           </Container>
-          <Keyboard usedLetters={usedLetters} letters={letters}/>
+          <Keyboard usedLetters={usedLetters} letters={letters} />
         </>
       )}
       ;
