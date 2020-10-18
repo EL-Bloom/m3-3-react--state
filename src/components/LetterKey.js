@@ -1,17 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-import LetterKeys from "../data/letters.json";
 import { colors } from "./GlobalStyles";
+import App from "./App";
 
-const LetterKey = ({}) => { 
-  let LetterMap = LetterKeys.map ((letter) => ( 
+const LetterKey = ({ letters, usedLetters }) => {
+  const used = usedLetters;
 
- <Wrapper> 
-{letter}
+  return letters.map((letter) => (
+    <Wrapper
+      onClick={onKeyboardLetterButtonClick}
+      disabled={used.includes(letter) ? true : false}
+    >
+      {letter}
+    </Wrapper>
+  ));
+};
 
-  </Wrapper>  
-  )) 
-  return LetterMap
+const onKeyboardLetterButtonClick = () => {
+  alert("have fun!");
 };
 
 const Wrapper = styled.button`

@@ -3,18 +3,19 @@ import styled from "styled-components";
 
 import { colors } from "./GlobalStyles";
 
-const DeadLetters = ({wrongGuesses}) => {
+const DeadLetters = ({ wrongGuesses }) => { 
+  console.log(wrongGuesses);
   return (
     <Wrapper>
       <h2>Dead Letters</h2>
-      <List>{wrongGuesses.map((ltr, idx) => ( 
-        <Letter key={`wrongGuesses.${idx}`}>{ltr}</Letter> 
-      ))} 
-</List>
-      </Wrapper>
-   
-      )};
-
+      <List>
+        {wrongGuesses.map((letter) => (
+          <Letter>{letter}</Letter>
+        ))}
+      </List>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   background: ${colors.red};

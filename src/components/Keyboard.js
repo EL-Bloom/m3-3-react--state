@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import LetterKey from "./LetterKey"; 
-import Letters from "../data/letters.json"
-
 import { colors, contentWidth } from "./GlobalStyles";
-console.log(Letters);
-const Keyboard = ({}) => (
+
+const Keyboard = ({letters, usedLetters}) => (
   <Wrapper>
-    <LetterKey /> 
+    <LetterKey letters={letters} usedLetters={usedLetters} /> 
 
      
       </Wrapper>

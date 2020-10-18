@@ -4,9 +4,10 @@ import styled from "styled-components";
 
 const TheWord = ({word}) =>  (
  <Wrapper>
-{word.revealed.map((ltr, idx) => (
-  <Span key={idx} line={!ltr.length}>
-    {ltr.length ? ltr : ""}
+{word.revealed.map((letter) => (
+   
+  <Span line={letter}>
+    {letter}
   </Span>
 ))}
 </Wrapper> 

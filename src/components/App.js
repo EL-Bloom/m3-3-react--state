@@ -9,6 +9,7 @@ import Keyboard from "./Keyboard";
 import GameOverModal from "./GameOverModal";
 import { useState } from "react";
 import words from "../data/words.json";
+import letters from "../data/letters.json";
 
 import { colors, contentWidth } from "./GlobalStyles";
 
@@ -16,31 +17,30 @@ const initialGameState = { started: false, over: false, win: false };
 
 const App = () => {
   const [game, setGame] = useState(initialGameState);
-  const [word, setWord] = useState({ str: "", revealed: []});
-  const [gameStart, toggle] = useState(true); 
-  const [wrongGuesses, setWrongGuesses] = useState([]); 
-  const [usedLetters, setUsedLetters] = useState([]);
+  const [word, setWord] = useState({ str: "" });
+  const [gameStart, toggle] = useState(true);
+  const [wrongGuesses, setWrongGuesses] = useState(['a', 'b']);
+  const [usedLetters, setUsedLetters] = useState(["x", "y"]);
 
   const GetNewWord = () => {
-    const newWord = words[Math.floor(Math.random() * words.length)];
-    setWord({
-      str: newWord,
-      revealed: newWord.split("").map(() => ""),
-    });
+    let newWord = words[Math.floor(Math.random() * words.length)]; 
+    let revealed = []; 
+    for(let i=0; i < newWord.length; i++) { 
+      revealed.push("");
+    }
+    setWord(() => {
+      console.log(revealed);
+       return{...word,str: newWord, revealed:revealed};
+      
+    }); 
+   
   };
-
-
-  const handleGuess = (ltr) => { 
-    
-  }
-
 
 
   const handleStart = () => {
     setGame({ ...game, started: !game.started });
     if (word.str === "") {
-      GetNewWord(); 
-    
+      GetNewWord();
     }
     toggle(!gameStart);
   };
@@ -53,18 +53,18 @@ const App = () => {
         <Button onClickFunc={handleStart} gameStart={gameStart}>
           {gameStart ? "Start" : "Pause"}
         </Button>
-        <Button>btn 2</Button>
+        <Button>Reset</Button>
       </Nav>
       {game.started && (
         <>
           <Container>
             <Deadman />
             <RightColumn>
-              <DeadLetters wrongGuesses={wrongGuesses}/>
-               <TheWord word={word}/>
-            </RightColumn > 
+              <DeadLetters wrongGuesses={wrongGuesses} />
+              <TheWord word={word} />
+            </RightColumn>
           </Container>
-          <Keyboard />
+          <Keyboard usedLetters={usedLetters} letters={letters}/>
         </>
       )}
       ;
