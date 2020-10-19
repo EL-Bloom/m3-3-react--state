@@ -1,20 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import LetterKey from "./LetterKey"; 
+import LetterKey from "./LetterKey";
 import { colors, contentWidth } from "./GlobalStyles";
 
-const Keyboard = ({letters, usedLetters, setUsedLetters}) => {  
-  return ( 
-  
-  <Wrapper>
-    <LetterKey  letters={letters} usedLetters={usedLetters} setUsedLetters={setUsedLetters} /> 
-
-     
-      </Wrapper>
-    )}
-   
-
-
+const Keyboard = ({ letters, usedLetters, handleGuess, setUsedLetters }) => {
+  return (
+    <Wrapper>
+      <LetterKey
+        letters={letters}
+        usedLetters={usedLetters}
+        setUsedLetters={setUsedLetters}
+        handleGuess={handleGuess}
+      />
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   background: ${colors.yellow};

@@ -3,16 +3,19 @@ import styled from "styled-components";
 import { colors } from "./GlobalStyles";
 import App from "./App";
 
-const LetterKey = ({ letters, usedLetters, setUsedLetters }) => {
+const LetterKey = ({ letters, usedLetters,handleGuess, setUsedLetters }) => {
   console.log(usedLetters);
 
   return letters.map((letter) => {
     return (
       <Wrapper
-        onClick={() => {
+        onClick={() => { 
+         
           let tempArray = [...usedLetters];
           tempArray.push(letter);
-          setUsedLetters(tempArray);
+          setUsedLetters(tempArray); 
+          handleGuess(letter)
+          
         }}
         disabled={usedLetters.includes(letter)}
       >

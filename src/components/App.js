@@ -17,39 +17,42 @@ const initialGameState = { started: false, over: false, win: false };
 
 const App = () => {
   const [game, setGame] = useState(initialGameState);
-  const [word, setWord] = useState({ str: "" });
+  const [word, setWord] = useState({ str: "", revealed: [] });
   const [gameStart, toggle] = useState(true);
-  const [wrongGuesses, setWrongGuesses] = useState(["a", "b"]);
-  const [usedLetters, setUsedLetters] = useState([ "a", "b"]);
- 
+  const [wrongGuesses, setWrongGuesses] = useState([]);
+  const [usedLetters, setUsedLetters] = useState([]);
+
   const handleStart = () => {
     setGame({ ...game, started: !game.started });
     if (word.str === "") {
       GetNewWord();
     }
     toggle(!gameStart);
-  }; 
+  };
 
   const GetNewWord = () => {
     let newWord = words[Math.floor(Math.random() * words.length)];
-    let revealed = [];
-    for (let i = 0; i < newWord.length; i++) {
-      revealed.push("");
-    }
-    setWord(() => {
-      console.log(revealed);
-      return { ...word, str: newWord, revealed: revealed };
-    }); 
-    
+    setWord({
+      str: newWord,
+      revealed: newWord.split("").map(() => ""),
+    });
   };
- 
-const handleGuess = () => {  
 
-  setUsedLetters (usedLetters.push(word.revealed))
-}
-    
-  
-
+  const handleGuess = (letter) => {
+    const letterArray = word.str.split("");
+    setUsedLetters([...usedLetters, letter]);
+    if (letterArray.includes(letter)) {
+      letterArray.forEach((ltr, id) => {
+        if (ltr === letter) {
+          const newObject = { ...word };
+          newObject.revealed[id] = letter;
+          setWord(newObject);
+        }
+      });
+    } else {
+      setWrongGuesses([...wrongGuesses, letter]);
+    }
+  };
 
   return (
     <Wrapper>
@@ -70,7 +73,12 @@ const handleGuess = () => {
               <TheWord word={word} />
             </RightColumn>
           </Container>
-          <Keyboard usedLetters={usedLetters} letters={letters} setUsedLetters={setUsedLetters}/>
+          <Keyboard
+            usedLetters={usedLetters}
+            letters={letters}
+            setUsedLetters={setUsedLetters}
+            handleGuess={handleGuess}
+          />
         </>
       )}
       ;
