@@ -3,20 +3,23 @@ import styled from "styled-components";
 import { colors } from "./GlobalStyles";
 import App from "./App";
 
-const LetterKey = ({ letters, usedLetters }) => {
-  
-  console.log(usedLetters)
+const LetterKey = ({ letters, usedLetters, setUsedLetters }) => {
+  console.log(usedLetters);
 
-  return letters.map((letter) => (
-    <Wrapper
-      onClick={ () => { 
-        usedLetters.push(letter)
-      }}
-      disabled={usedLetters.includes(letter)}
-    >
-      {letter}
-    </Wrapper>
-  ));
+  return letters.map((letter) => {
+    return (
+      <Wrapper
+        onClick={() => {
+          let tempArray = [...usedLetters];
+          tempArray.push(letter);
+          setUsedLetters(tempArray);
+        }}
+        disabled={usedLetters.includes(letter)}
+      >
+        {letter}
+      </Wrapper>
+    );
+  });
 };
 
 const Wrapper = styled.button`

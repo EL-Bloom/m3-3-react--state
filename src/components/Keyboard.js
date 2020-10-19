@@ -3,13 +3,15 @@ import styled from "styled-components";
 import LetterKey from "./LetterKey"; 
 import { colors, contentWidth } from "./GlobalStyles";
 
-const Keyboard = ({letters, usedLetters}) => (
+const Keyboard = ({letters, usedLetters, setUsedLetters}) => {  
+  return ( 
+  
   <Wrapper>
-    <LetterKey letters={letters} usedLetters={usedLetters} /> 
+    <LetterKey  letters={letters} usedLetters={usedLetters} setUsedLetters={setUsedLetters} /> 
 
      
       </Wrapper>
-    )
+    )}
    
 
 
