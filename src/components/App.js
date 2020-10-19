@@ -51,8 +51,32 @@ const App = () => {
       });
     } else {
       setWrongGuesses([...wrongGuesses, letter]);
+    } 
+
+    if (usedLetters.length >= 10) { 
+      handleEndGame(false)
+    } 
+    else if (word.revealed.filter((ltr) => ltr === "").length === 0) {
+      handleEndGame(true);
     }
+  };  
+
+  const handleEndGame = (win) => { 
+  
+   setGame({
+      started: true,
+      paused: false,
+      over: true,
+      win: { win },
+    })
+    alert(`Game Over! You ${win ? "win" : "lose"}`);
   };
+
+  const handleReset = () => {  
+    GetNewWord();
+    setWrongGuesses([]); 
+    setUsedLetters([]);
+  }
 
   return (
     <Wrapper>
@@ -62,7 +86,7 @@ const App = () => {
         <Button onClickFunc={handleStart} gameStart={gameStart}>
           {gameStart ? "Start" : "Pause"}
         </Button>
-        <Button>Reset</Button>
+        <Button onClickFunc={handleReset}>Reset</Button>
       </Nav>
       {game.started && (
         <>
@@ -77,7 +101,7 @@ const App = () => {
             usedLetters={usedLetters}
             letters={letters}
             setUsedLetters={setUsedLetters}
-            handleGuess={handleGuess}
+            handleGuess={handleGuess} 
           />
         </>
       )}

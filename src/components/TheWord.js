@@ -24,7 +24,8 @@ const Span = styled.span`
   border-bottom: ${(props) => (props.line ? "2px solid white" : "none")};
   width: 30px;
   margin: 0 3px;
-  text-align: center;
+  text-align: center; 
+  margin-bottom:20px;
 `;
 
 export default TheWord;
